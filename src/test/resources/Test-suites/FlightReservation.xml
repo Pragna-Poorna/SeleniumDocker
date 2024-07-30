@@ -1,0 +1,21 @@
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd" >
+<suite name="flight-reservation" parallel="tests" thread-count="1">
+    <test name="passengers-count-1">
+        <parameter name="testDataPath" value="Test-data/passenger-1.json" />
+        <classes>
+            <class name="com.poorna.tests.ReservationTest"/>
+        </classes>
+    </test>
+    <test name="passengers-count-2">
+        <parameter name="testDataPath" value="Test-data/passenger-2.json" />
+        <classes>
+            <class name="com.poorna.tests.ReservationTest"/>
+        </classes>
+    </test>
+    <test name="passengers-count-3">
+        <parameter name="testDataPath" value="Test-data/passenger-3.json" />
+        <classes>
+            <class name="com.poorna.tests.ReservationTest"/>
+        </classes>
+    </test>
+</suite>
