@@ -8,24 +8,21 @@ pipeline {
         }
         stage('Build Image') {
             steps {
-               bat "docker build -t=java/selenium ."
+               script {
+                        app = docker.build('poorna89/poornadocker')
+                       }
             }
         }
         stage('Push Image') {
-            environment{
-               DOCKER_HUB = credentials('docker-credentials')
-            }
             steps {
-               bat 'docker login -u ${DOCKER_HUB_USR} -p ${DOCKER_HUB_PSW}'
-               bat "docker push java/selenium"
+               script {
+                      // registry url is blank for dockerhub
+               docker.withRegistry('', 'docker-credentials') {
+                              app.push("latest")
+                                                             }
+                      }
             }
                 }
         // Additional stages
-    }
-
-    post {
-        always {
-            bat "docker logout"
-        }
     }
 }
